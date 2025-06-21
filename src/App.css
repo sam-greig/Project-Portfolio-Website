@@ -1,3 +1,4 @@
+/*Navbar Display CSS*/
 .tiny_screen, .small_screen {
     display: none;
 }
@@ -6,6 +7,12 @@
     display: block;
 }
 
+/*Portfolio Preview Container CSS*/
+.project_item {
+    max-width: 50%;
+}
+
+/*Navbar Media Queries*/
 @media (max-width: 830px) {
     .small_screen {
         display: block;
@@ -30,7 +37,39 @@
     }
 }
 
+@media (max-width: 767px) {
+    .project-item {
+        max-width: 100%;
+    }
+}
 
+/*Project Tag Colours*/
+.bg_cornflower_blue{background: #b3c7f7;}
 
+.game{background: #b9e192;}
 
+.web{background: #8babf1;}
 
+.java{}
+
+/*Project Pop-up/Overlay CSS*/
+.fade_background {
+    opacity:    0.5;
+    background: #000;
+    width:      100%;
+    height:     100%;
+    z-index:    10;
+    top:        0;
+    left:       0;
+    position:   fixed;
+}
+
+.overlay {
+    background: white;
+    width: 80%;
+    height: 80%;
+    z-index: 10;
+    top: 10%;
+    left: 10%;
+    position: fixed;
+}
