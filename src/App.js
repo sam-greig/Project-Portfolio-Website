@@ -1,12 +1,9 @@
 import './App.css';
 import React, {Fragment, useEffect, useState} from 'react';
-import ContactForm from './Form.js'
-import View_Project from "./View_Project";
-import Navbar from "./Navbar";
-
-//Globally Declared Colours
-const jordy_blue = "#8babf1";
-const link_water = "#d9e4ff";
+import ContactForm from './components/Form.js'
+import View_Project from "./functions/View_Project";
+import Navbar from "./components/Navbar";
+import {jordy_blue, link_water} from "./data/colour_palette";
 
 function App() {
     document.body.style.backgroundColor = link_water;
@@ -178,6 +175,33 @@ function App() {
                                             </div>
                                         </button>
                                     )}
+
+                                    {/*Art Shop Project Preview*/}
+                                    {/*{(filters.web || filter_off) && (*/}
+                                    {/*    <button className="d-flex flex-column align-items-start border rounded border-2 flex-grow-1 flex-shrink-1 project_item btn p-0"*/}
+                                    {/*            style={{ minWidth: "240px", flexBasis: "300px" }}*/}
+                                    {/*            onClick={() => {set_show_background(true); view_project('art_shop');}}>*/}
+                                    {/*        <div className="d-flex flex-column justify-content-between h-100 w-100">*/}
+                                    {/*            <div>*/}
+                                    {/*                <div className="d-flex flex-wrap gap-1 justify-content-start mt-3 align-items-start" style={{ flexBasis: "50px" }}>*/}
+                                    {/*                    <p className="m-0 mx-3 rounded p-1 fw-bold web align-self-center">Web</p>*/}
+                                    {/*                    <h5 className="m-0 align-self-center text-wrap">*/}
+                                    {/*                        <span className="d-inline d-sm-inline">Art</span>*/}
+                                    {/*                        <span className="d-block d-sm-inline"> Shop</span>*/}
+                                    {/*                    </h5>*/}
+                                    {/*                </div>*/}
+                                    {/*                <hr className="p-0 m-0 mt-2 border-2" />*/}
+                                    {/*                <img src="images/secure_escape.png" alt="Game Screenshot: Secure Escape" className="img-fluid" />*/}
+                                    {/*                <hr className="p-0 m-0 border-2" />*/}
+                                    {/*                <p className="m-3 mt-2 text-start">An ecommerce website built to sell art.</p>*/}
+                                    {/*            </div>*/}
+
+                                    {/*            <div className="d-flex flex-wrap gap-1 m-3">*/}
+                                    {/*                <p className="m-0 rounded p-1 fw-bold align-self-center bg_cornflower_blue">GML</p>*/}
+                                    {/*            </div>*/}
+                                    {/*        </div>*/}
+                                    {/*    </button>*/}
+                                    {/*)}*/}
 
                                     {/*Invisible Divs to Maintain Formatting/CSS for Visible Portfolio Items*/}
                                     <div className="border p-2 rounded border-2 flex-grow-1 flex-shrink-1 invisible"
