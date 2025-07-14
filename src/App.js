@@ -40,7 +40,7 @@ function App() {
                     <div className="d-flex justify-content-between align-items-center p-1 border-bottom border-3 border-black" style={{ backgroundColor: jordy_blue }}>
                           {/*Logo and Name*/}
                           <div className="d-flex justify-content-between align-items-center">
-                              <img className="img-fluid m-0 p-0 align-self-center" src="/logo.png" alt="Letter S Logo" style={{ width: '120px', height: '120px'}}></img>
+                              <img className="img-fluid m-0 p-0 align-self-center" src="/images/icons/logo.png" alt="Letter S Logo" style={{ width: '120px', height: '120px'}}></img>
                               <h1 className="pt-2 text-center ps-2" style={{marginInlineStart: ''}}><strong>Samuel Greig</strong></h1>
                           </div>
                           {/*Navbar*/}
@@ -133,7 +133,7 @@ function App() {
                                                     </h5>
                                                 </div>
                                                 <hr className="p-0 m-0 mt-2 border-2" />
-                                                <img src="images/portfolio_website.png" alt="Game Screenshot: Secure Escape" className="img-fluid" />
+                                                <img src="images/portfolio/portfolio_website_homepage.png" alt="Game Screenshot: Secure Escape" className="img-fluid" />
                                                 <hr className="p-0 m-0 border-2" />
                                                 <p className="m-3 mt-2 text-start">Website designed to display project portfolio while learning React and Bootstrap</p>
                                             </div>
@@ -164,7 +164,7 @@ function App() {
                                                         </h5>
                                                     </div>
                                                     <hr className="p-0 m-0 mt-2 border-2" />
-                                                    <img src="images/secure_escape.png" alt="Game Screenshot: Secure Escape" className="img-fluid" />
+                                                    <img src="images/secure_escape/secure_escape.png" alt="Game Screenshot: Secure Escape" className="img-fluid" />
                                                     <hr className="p-0 m-0 border-2" />
                                                     <p className="m-3 mt-2 text-start">Teaching cyber security concepts through escape room minigames</p>
                                                 </div>
