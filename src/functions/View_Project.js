@@ -163,7 +163,7 @@ function View_Project({show, close_overlay, selected_project}) {
                             <a target="_blank" href={page_data[selected_project][0].github}
                                className={"p-0 m-0 border border-black border-2 d-flex justify-content-center align-items-center bg-white"}
                                style={{ height: "60px", width: "60px" }}>
-                                <img src={"images/github_logo.jpg"} alt="GitHub Logo"
+                                <img src={"images/icons/github_logo.jpg"} alt="GitHub Logo"
                                      style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain" }}/>
                             </a>
                         )}
@@ -171,7 +171,7 @@ function View_Project({show, close_overlay, selected_project}) {
                             <a target="_blank" href={page_data[selected_project][0].live}
                                className={"p-0 m-0 border border-black border-2 d-flex justify-content-center align-items-center bg-white"}
                                style={{ height: "60px", width: "60px" }}>
-                                <img src={"images/deployed_logo.png"} alt="Deployment Logo"
+                                <img src={"images/icons/deployed_logo.png"} alt="Deployment Logo"
                                      style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain" }}/>
                             </a>
                         )}
