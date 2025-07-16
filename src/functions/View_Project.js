@@ -115,10 +115,10 @@ function View_Project({show, close_overlay, selected_project}) {
                 live: ""
             }
         ],
-        art_shop: [
+        caras_art_shop: [
             {
-                title: "Art Shop",
-                github: "",
+                title: "Cara's Art Shop",
+                github: "https://github.com/sam-greig/Caras-Art-Shop",
                 live: ""
             }
         ]
@@ -188,7 +188,7 @@ function View_Project({show, close_overlay, selected_project}) {
                             {under_development}
                         </>
                     )}
-                    {selected_project === 'art_shop' && (
+                    {selected_project === 'caras_art_shop' && (
                         <>
                             {under_development}
                         </>
