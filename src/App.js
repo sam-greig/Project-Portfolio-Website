@@ -1,5 +1,5 @@
 import './App.css';
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ContactForm from './components/Form.js'
 import View_Project from "./functions/View_Project";
 import Navbar from "./components/Navbar";
@@ -17,7 +17,6 @@ function App() {
     });
 
     let filter_off = Object.values(filters).every(value => !value);
-
     const handle_checkbox_change = (event) => {
         const {name, checked} = event.target;
 
@@ -31,16 +30,44 @@ function App() {
         filter_off = Object.values(filters).every(value => !value);
     };
 
+    const [fullscreen_img, set_fullscreen_img] = useState(null);
+    useEffect(() => {
+        const image_clicked = (e) => {
+            //Checks if an img tag is clicked and does not have a parent button container - Not a project item image
+            if ((e.target.tagName === "IMG") && (e.target.closest('button') === null)) {
+                set_fullscreen_img(e.target);
+            }
+        };
+        document.addEventListener("click", image_clicked);
+        return () => {
+            document.removeEventListener("click", image_clicked);
+        };
+    }, []);
+
+    const close_fullscreen_img = () => {
+        set_fullscreen_img(null);
+    };
 
     return (
         <>
             <div>
+                {/*Display Fullscreen version of clicked on image*/}
+                {fullscreen_img && (
+                    <div className={"d-flex justify-content-center align-items-center position-fixed"}
+                         style={{top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.8)', zIndex: 9999}}>
+                        <div style={{ position: 'relative' }}>
+                            <img src={fullscreen_img.src} alt={fullscreen_img.alt} className={"img-fluid"} style={{maxWidth: '95vw', maxHeight: '95vh'}}/>
+                            <button className="btn-close bg-white position-absolute" aria-label="Close" onClick={close_fullscreen_img}
+                                    style={{top: '0.5rem', right: '0.5rem'}}/>
+                        </div>
+                    </div>
+                )}
                 <div>
                     <div className="overflow-hidden h-100"></div>
                     <div className="d-flex justify-content-between align-items-center p-1 border-bottom border-3 border-black" style={{ backgroundColor: jordy_blue }}>
                           {/*Logo and Name*/}
                           <div className="d-flex justify-content-between align-items-center">
-                              <img className="img-fluid m-0 p-0 align-self-center" src="/images/icons/logo.png" alt="Letter S Logo" style={{ width: '120px', height: '120px'}}></img>
+                              <img className="img-fluid m-0 p-0 align-self-center" src="/logo.png" alt="Letter S Logo" style={{ width: '120px', height: '120px'}}></img>
                               <h1 className="pt-2 text-center ps-2" style={{marginInlineStart: ''}}><strong>Samuel Greig</strong></h1>
                           </div>
                           {/*Navbar*/}
@@ -75,14 +102,6 @@ function App() {
                                 <div className="d-flex justify-content-between align-items-center">
                                     <h2>Projects</h2>
                                     <div className="d-flex justify-content-between align-items-center">
-                                        {/*Sort Button*/}
-                                        {/*<div className="">*/}
-                                        {/*    <label htmlFor="sort" className="form-label">Sort By:</label>*/}
-                                        {/*    <select name="sort" id="sort" className="mx-2 p-1 border rounded border-2">*/}
-                                        {/*        <option value="Ascending">Ascending</option>*/}
-                                        {/*        <option value="Descending">Descending</option>*/}
-                                        {/*    </select>*/}
-                                        {/*</div>*/}
 
                                         {/*Filter Button*/}
                                         <div className="btn-group">
@@ -108,8 +127,8 @@ function App() {
                                                         <input className="form-check-input shadow-none focus-ring-0 m-0 mx-3" type="checkbox" name="game" checked={filters.game} onChange={handle_checkbox_change} id="game_filter"/>
                                                     </div>
                                                 </li>
-                                                <li><hr className="dropdown-divider"></hr></li>
-                                                <li><a className="dropdown-item" href="#">Separated link</a></li>
+                                                {/*<li><hr className="dropdown-divider"></hr></li>*/}
+                                                {/*<li><a className="dropdown-item" href="#">Separated link</a></li>*/}
                                             </ul>
                                         </div>
                                     </div>
@@ -126,14 +145,13 @@ function App() {
                                             <div>
                                                 <div className="d-flex flex-wrap justify-content-start mt-3 align-items-start" style={{ flexBasis: "50px" }}>
                                                     <p className="m-0 mx-3 rounded p-1 fw-bold web align-self-center">Web</p>
-                                                    {/*<h5 className="m-0 me-1 p-0 align-self-center">Portfolio Website</h5>*/}
                                                     <h5 className="m-0 align-self-center text-wrap">
                                                         <span className="d-inline d-sm-inline">Portfolio</span>
                                                         <span className="d-block d-sm-inline"> Website</span>
                                                     </h5>
                                                 </div>
                                                 <hr className="p-0 m-0 mt-2 border-2" />
-                                                <img src="images/portfolio/portfolio_website_homepage.png" alt="Game Screenshot: Secure Escape" className="img-fluid" />
+                                                <img src="images/portfolio/portfolio_website_homepage.png" alt="Portfolio Website Homepage" className="img-fluid project"/>
                                                 <hr className="p-0 m-0 border-2" />
                                                 <p className="m-3 mt-2 text-start">Website designed to display project portfolio while learning React and Bootstrap</p>
                                             </div>
@@ -175,33 +193,35 @@ function App() {
                                             </div>
                                         </button>
                                     )}
-
                                     {/*Art Shop Project Preview*/}
-                                    {/*{(filters.web || filter_off) && (*/}
-                                    {/*    <button className="d-flex flex-column align-items-start border rounded border-2 flex-grow-1 flex-shrink-1 project_item btn p-0"*/}
-                                    {/*            style={{ minWidth: "240px", flexBasis: "300px" }}*/}
-                                    {/*            onClick={() => {set_show_background(true); view_project('art_shop');}}>*/}
-                                    {/*        <div className="d-flex flex-column justify-content-between h-100 w-100">*/}
-                                    {/*            <div>*/}
-                                    {/*                <div className="d-flex flex-wrap gap-1 justify-content-start mt-3 align-items-start" style={{ flexBasis: "50px" }}>*/}
-                                    {/*                    <p className="m-0 mx-3 rounded p-1 fw-bold web align-self-center">Web</p>*/}
-                                    {/*                    <h5 className="m-0 align-self-center text-wrap">*/}
-                                    {/*                        <span className="d-inline d-sm-inline">Art</span>*/}
-                                    {/*                        <span className="d-block d-sm-inline"> Shop</span>*/}
-                                    {/*                    </h5>*/}
-                                    {/*                </div>*/}
-                                    {/*                <hr className="p-0 m-0 mt-2 border-2" />*/}
-                                    {/*                <img src="images/secure_escape.png" alt="Game Screenshot: Secure Escape" className="img-fluid" />*/}
-                                    {/*                <hr className="p-0 m-0 border-2" />*/}
-                                    {/*                <p className="m-3 mt-2 text-start">An ecommerce website built to sell art.</p>*/}
-                                    {/*            </div>*/}
+                                    {(filters.web || filter_off) && (
+                                        <button className="d-flex flex-column align-items-start border rounded border-2 flex-grow-1 flex-shrink-1 project_item btn p-0"
+                                                style={{ minWidth: "240px", flexBasis: "300px" }}
+                                                onClick={() => {set_show_background(true); view_project('caras_art_shop');}}>
+                                            <div className="d-flex flex-column justify-content-between h-100 w-100">
+                                                <div>
+                                                    <div className="d-flex flex-wrap gap-1 justify-content-start mt-3 align-items-start" style={{ flexBasis: "50px" }}>
+                                                        <p className="m-0 mx-3 rounded p-1 fw-bold web align-self-center">Web</p>
+                                                        <h5 className="m-0 align-self-center text-wrap">
+                                                            <span className="d-inline d-sm-inline">Cara's </span>
+                                                            <span className="d-inline d-sm-inline">Art </span>
+                                                            <span className="d-block d-sm-inline">Shop</span>
+                                                        </h5>
+                                                    </div>
+                                                    <hr className="p-0 m-0 mt-2 border-2" />
+                                                    <img src="images/caras_art_shop/caras_art_shop_homepage.png" alt="Cara's Art Shop Store Page" className="img-fluid" />
+                                                    <hr className="p-0 m-0 border-2" />
+                                                    <p className="m-3 mt-2 text-start">An ecommerce website built to sell art for a client called Cara.</p>
+                                                </div>
 
-                                    {/*            <div className="d-flex flex-wrap gap-1 m-3">*/}
-                                    {/*                <p className="m-0 rounded p-1 fw-bold align-self-center bg_cornflower_blue">GML</p>*/}
-                                    {/*            </div>*/}
-                                    {/*        </div>*/}
-                                    {/*    </button>*/}
-                                    {/*)}*/}
+                                                <div className="d-flex flex-wrap gap-1 m-3">
+                                                    <p className="m-0 rounded p-1 fw-bold align-self-center bg_cornflower_blue">HTML</p>
+                                                    <p className="m-0 rounded p-1 fw-bold align-self-center bg_cornflower_blue">PHP</p>
+                                                    <p className="m-0 rounded p-1 fw-bold align-self-center bg_cornflower_blue">SQL</p>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    )}
 
                                     {/*Invisible Divs to Maintain Formatting/CSS for Visible Portfolio Items*/}
                                     <div className="border p-2 rounded border-2 flex-grow-1 flex-shrink-1 invisible"
