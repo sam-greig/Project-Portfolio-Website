@@ -34,7 +34,7 @@ function App() {
     useEffect(() => {
         const image_clicked = (e) => {
             //Checks if an img tag is clicked and does not have a parent button container - Not a project item image
-            if ((e.target.tagName === "IMG") && (e.target.closest('button') === null)) {
+            if ((e.target.tagName === "IMG") && (e.target.closest('button') === null) && (e.target.closest('a') === null) && !e.target.src.includes("/logo.png")) {
                 set_fullscreen_img(e.target);
             }
         };
@@ -151,7 +151,7 @@ function App() {
                                                     </h5>
                                                 </div>
                                                 <hr className="p-0 m-0 mt-2 border-2" />
-                                                <img src="images/portfolio/portfolio_website_homepage.png" alt="Portfolio Website Homepage" className="img-fluid project"/>
+                                                <img src="images/portfolio/portfolio_website_homepage.webp" alt="Portfolio Website Homepage" className="img-fluid project"/>
                                                 <hr className="p-0 m-0 border-2" />
                                                 <p className="m-3 mt-2 text-start">Website designed to display project portfolio while learning React and Bootstrap</p>
                                             </div>
@@ -182,7 +182,7 @@ function App() {
                                                         </h5>
                                                     </div>
                                                     <hr className="p-0 m-0 mt-2 border-2" />
-                                                    <img src="images/secure_escape/secure_escape.png" alt="Game Screenshot: Secure Escape" className="img-fluid" />
+                                                    <img src="images/secure_escape/secure_escape_main_room.webp" alt="Game Screenshot: Secure Escape" className="img-fluid" />
                                                     <hr className="p-0 m-0 border-2" />
                                                     <p className="m-3 mt-2 text-start">Teaching cyber security concepts through escape room minigames</p>
                                                 </div>
@@ -209,7 +209,7 @@ function App() {
                                                         </h5>
                                                     </div>
                                                     <hr className="p-0 m-0 mt-2 border-2" />
-                                                    <img src="images/caras_art_shop/caras_art_shop_homepage.png" alt="Cara's Art Shop Store Page" className="img-fluid" />
+                                                    <img src="images/caras_art_shop/caras_art_shop_homepage.webp" alt="Cara's Art Shop Store Page" className="img-fluid" />
                                                     <hr className="p-0 m-0 border-2" />
                                                     <p className="m-3 mt-2 text-start">An ecommerce website built to sell art for a client called Cara.</p>
                                                 </div>
