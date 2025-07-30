@@ -8,18 +8,28 @@ function View_Project({show, close_overlay, selected_project}) {
 
     const [image_index, set_image_index] = useState(0);
     const [fade, set_fade] = useState(true);
+    const [image_loading, set_image_loading] = useState(false);
     const update_image = (forward) => {
-        //Start Fading
-        set_fade(false);
-        //Wait 200 milliseconds (0.2s)
-        setTimeout(() => {
-            //Update Image Index depending on if forward or backward button is clicked
-            set_image_index(prev =>
-                forward ? (prev + 1) % images[selected_project].length : (prev - 1 + images[selected_project].length) % images[selected_project].length
-            );
-            //Finish fade
-            set_fade(true);
-        }, 200);
+        //Index +/- 1 % Length (Loop through index)
+        const next_index = forward ? (image_index + 1) % images[selected_project].length : (image_index - 1 + images[selected_project].length) % images[selected_project].length;
+        const img = new Image();
+        img.src = images[selected_project][next_index].img_src;
+        //If Image does not load in fade transition time show "Loading..."
+        const timeout = setTimeout(() => {
+            set_image_loading(true);
+        }, 300);
+
+        img.onload = () => {
+            //Start Fading
+            set_fade(false);
+            clearTimeout(timeout);
+            setTimeout(() => {
+                set_image_loading(false);
+                set_image_index(next_index);
+                //Finish fade
+                set_fade(true);
+            }, 300);
+        };
     };
 
     const SVGLeftArrow = (props) => (
@@ -27,8 +37,6 @@ function View_Project({show, close_overlay, selected_project}) {
              fill="#FFFFFF"
              strokeWidth="10"
              viewBox="0 0 512 512"
-            // height="200px"
-            // width="200px"
              xmlns="http://www.w3.org/2000/svg"
              {...props}>
             <path d="M8 256c0 137 111 248 248 248s248-111 248-248S393 8 256 8 8 119 8 256zm448 0c0 110.5-89.5 200-200 200S56 366.5 56 256 145.5 56 256 56s200 89.5 200 200zm-72-20v40c0 6.6-5.4 12-12 12H256v67c0 10.7-12.9 16-20.5 8.5l-99-99c-4.7-4.7-4.7-12.3 0-17l99-99c7.6-7.6 20.5-2.2 20.5 8.5v67h116c6.6 0 12 5.4 12 12z"/>
@@ -40,8 +48,6 @@ function View_Project({show, close_overlay, selected_project}) {
              fill="#FFFFFF"
              strokeWidth="10"
              viewBox="0 0 512 512"
-            // height="200px"
-            // width="200px"
              xmlns="http://www.w3.org/2000/svg"
              {...props}>
             <path d="M504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248 248-111 248-248zm-448 0c0-110.5 89.5-200 200-200s200 89.5 200 200-89.5 200-200 200S56 366.5 56 256zm72 20v-40c0-6.6 5.4-12 12-12h116v-67c0-10.7 12.9-16 20.5-8.5l99 99c4.7 4.7 4.7 12.3 0 17l-99 99c-7.6 7.6-20.5 2.2-20.5-8.5v-67H140c-6.6 0-12-5.4-12-12z"/>
@@ -58,7 +64,7 @@ function View_Project({show, close_overlay, selected_project}) {
                         <SVGLeftArrow width="50px" height="40px" style={{filter: "drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.4))"}}/>
                     </button>
                     {/*Display current selected image*/}
-                    {images[selected_project] && images[selected_project][image_index] && (
+                    {images[selected_project] && images[selected_project][image_index] && !image_loading ? (
                         <div className={'image-container' + (!fade ? ' fade-out' : '')} style={{ width: '100%' }}>
                             <img
                                 src={images[selected_project][image_index].img_src}
@@ -66,6 +72,8 @@ function View_Project({show, close_overlay, selected_project}) {
                                 className="h-100 w-100 border border-2 border-black"
                             />
                         </div>
+                    ) : (
+                        <div className={'image-container p-5 m-5'} style={{color: "white"}}>Loading...</div>
                     )}
 
                     {/*<button className={"btn position-absolute border-0 " + ((images[selected_project].length > 1) ? '' : 'invisible')}*/}
@@ -74,12 +82,12 @@ function View_Project({show, close_overlay, selected_project}) {
                             onClick={() => update_image(true)}>
                         <SVGRightArrow width="50px" height="40px" style={{filter: "drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.4))"}}/>
                     </button>
-                    {/*Create a box for each image*/}
+                    {/*Create a circle for each image*/}
                     {images[selected_project] && images[selected_project][image_index] && (
                         <div className={"position-absolute d-flex gap-2 "}
                              style={{bottom: '10px', left: '50%', transform: 'translateX(-50%)', zIndex: 2}}                                        >
                             {images[selected_project].map((_, index) => (
-                                <div key={index} style={{width: '12px', height: '12px', backgroundColor: index === image_index ? '#000000' : '#FFFFFF', borderRadius: '12px', transition: 'background-color 0.3s'}}/>
+                                <div className={"m-0"} style={{boxShadow: '0 0 8px rgba(0, 0, 0, 0.5)', borderRadius: '12px',}}><div key={index} style={{width: '12px', height: '12px', backgroundColor: index === image_index ? '#000000' : '#FFFFFF', borderRadius: '12px', transition: 'background-color 0.3s'}}/></div>
                             ))}
                         </div>
                     )}
@@ -145,7 +153,7 @@ function View_Project({show, close_overlay, selected_project}) {
                 <div className="fade_background"></div>
                 <div className="overlay border border-black border-2 rounded-3 overflow-auto" style={{backgroundColor: link_water}}>
                     {/*Close Button*/}
-                    <button type="button" className="btn-close m-3" aria-label="Close" onClick={close_overlay}
+                    <button type="button" className="btn-close m-3" aria-label="Close" onClick={() => {close_overlay(); set_image_index(0)}}
                             style={{position: 'fixed', top: '1rem', right: '1rem', zIndex: 10, backgroundColor: "#FFFFFF"}}>
                     </button>
                     {/*Overlay Page Title*/}
@@ -160,7 +168,7 @@ function View_Project({show, close_overlay, selected_project}) {
                     {/*GitHub and Live Links*/}
                     <div className="d-flex justify-content-end pb-2 pt-2 me-4 gap-2 align-items-stretch">
                         {page_data[selected_project][0].github.localeCompare("") === 1 && (
-                            <a target="_blank" href={page_data[selected_project][0].github}
+                            <a target="_blank" href={page_data[selected_project][0].github} rel="noopener noreferrer"
                                className={"p-0 m-0 border border-black border-2 d-flex justify-content-center align-items-center bg-white"}
                                style={{ height: "60px", width: "60px" }}>
                                 <img src={"images/icons/github_logo.jpg"} alt="GitHub Logo"
@@ -168,7 +176,7 @@ function View_Project({show, close_overlay, selected_project}) {
                             </a>
                         )}
                         {page_data[selected_project][0].live.localeCompare("") === 1 && (
-                            <a target="_blank" href={page_data[selected_project][0].live}
+                            <a target="_blank" href={page_data[selected_project][0].live} rel="noopener noreferrer"
                                className={"p-0 m-0 border border-black border-2 d-flex justify-content-center align-items-center bg-white"}
                                style={{ height: "60px", width: "60px" }}>
                                 <img src={"images/icons/deployed_logo.png"} alt="Deployment Logo"
