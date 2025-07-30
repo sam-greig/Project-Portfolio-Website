@@ -147,25 +147,25 @@ const portfolio_page = () => {
                 <div className={""}>
                     <h6><strong>React</strong></h6>
                     <ul>
-                        <li><a href={"https://www.w3schools.com/react/default.asp"}>https://www.w3schools.com/react/default.asp</a></li>
+                        <li><a href={"https://www.w3schools.com/react/default.asp"} className={"text-break"}>https://www.w3schools.com/react/default.asp</a></li>
                     </ul>
                 </div>
                 <div className={""}>
                     <h6><strong>Bootstrap</strong></h6>
                     <ul>
-                        <li><a href={"https://bootstrap-cheatsheet.themeselection.com/"}>https://bootstrap-cheatsheet.themeselection.com/</a></li>
-                        <li><a href={"https://www.w3schools.com/bootstrap5/index.php"}>https://www.w3schools.com/bootstrap5/index.php</a></li>
+                        <li><a href={"https://bootstrap-cheatsheet.themeselection.com/"} className={"text-break"}>https://bootstrap-cheatsheet.themeselection.com/</a></li>
+                        <li><a href={"https://www.w3schools.com/bootstrap5/index.php"} className={"text-break"}>https://www.w3schools.com/bootstrap5/index.php</a></li>
                     </ul>
                 </div>
                 <div className={""}>
                     <h6><strong>Hosting</strong></h6>
                     <ul>
-                        <li><a href={"https://pages.github.com/"}>https://pages.github.com/</a></li>
-                        <li><a href={"https://github.com/gitname/react-gh-pages"}>https://github.com/gitname/react-gh-pages</a></li>
-                        <li><a href={"https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages"}>https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages</a></li>
-                        <li><a href={"https://medium.com/@md.alishanali/how-to-deploy-your-node-js-backend-project-to-vercel-a-step-by-step-guide-f92133c3b5e2"}>https://medium.com/@md.alishanali/how-to-deploy-your-node-js-backend-project-to-vercel-a-step-by-step-guide-f92133c3b5e2</a></li>
-                        <li><a href={"https://vercel.com/guides/using-express-with-vercel"}>https://vercel.com/guides/using-express-with-vercel</a></li>
-                        <li><a href={"https://expressjs.com/en/guide/routing.html"}>https://expressjs.com/en/guide/routing.html</a></li>
+                        <li><a href={"https://pages.github.com/"} className={"text-break"}>https://pages.github.com/</a></li>
+                        <li><a href={"https://github.com/gitname/react-gh-pages"} className={"text-break"}>https://github.com/gitname/react-gh-pages</a></li>
+                        <li><a href={"https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages"} className={"text-break"}>https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages</a></li>
+                        <li><a href={"https://medium.com/@md.alishanali/how-to-deploy-your-node-js-backend-project-to-vercel-a-step-by-step-guide-f92133c3b5e2"} className={"text-break"}>https://medium.com/@md.alishanali/how-to-deploy-your-node-js-backend-project-to-vercel-a-step-by-step-guide-f92133c3b5e2</a></li>
+                        <li><a href={"https://vercel.com/guides/using-express-with-vercel"} className={"text-break"}>https://vercel.com/guides/using-express-with-vercel</a></li>
+                        <li><a href={"https://expressjs.com/en/guide/routing.html"} className={"text-break"}>https://expressjs.com/en/guide/routing.html</a></li>
                     </ul>
                 </div>
             </div>

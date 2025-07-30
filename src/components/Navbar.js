@@ -1,12 +1,27 @@
-import React, {useState} from "react";
-
-const jordy_blue = "#8babf1";
-const link_water = "#d9e4ff";
+import React, {useEffect, useState} from "react";
+import {jordy_blue} from "../data/colour_palette";
 
 function Navbar() {
     const white = '#FFFFFF';
     const black = '#000000';
     const [active_tab, set_active_tab] = useState('home');
+
+    //Close Navbar when clicking outside of it
+    useEffect(() => {
+        const close_navbar = (event) => {
+            //Navbar Variables
+            const navbar_toggler = document.getElementById("navbar_toggler");
+            const toggle_button = document.querySelector(".navbar-toggler");
+            //Check if navbar is open and clicked outside the navbar container
+            if (navbar_toggler.classList.contains("show") && !navbar_toggler.contains(event.target) && !toggle_button.contains(event.target)) {
+                toggle_button.click();
+            }
+        };
+        document.addEventListener("click", close_navbar);
+        return () => {
+            document.removeEventListener("click", close_navbar);
+        };
+    }, []);
 
     const navbar_buttons = (
         <>
