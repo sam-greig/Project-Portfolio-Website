@@ -90,10 +90,11 @@ function App() {
                             <>
                                 <h2><strong>About</strong></h2>
                                 <hr></hr>
-                                <p> Motivated and detail-oriented undergraduate computer science student with a strong foundation in programming and software development.
-                                    Recently graduated with a 2:1 in BSc Hons Computer Science at the University of Strathclyde.
-                                    Experienced in developing practical projects that blend creativity with technical expertise, such as a cybersecurity-themed video game.
-                                    Passionate about problem-solving, coding, and creating impactful software solutions.
+                                <p>
+                                    Recent Computer Science graduate (2:1 BSc Hons) from the University of Strathclyde, with a strong foundation in full-stack development, cybersecurity, and software engineering.
+                                    Skilled in building user- friendly, responsive web applications and gamified educational tools using technologies such as React, PHP, and GameMaker.
+                                    Passionate about problem-solving, clean code, and building secure impactful software.
+                                    Proven ability to work both independently and within agile teams.
                                 </p>
                             </>
                         )}
