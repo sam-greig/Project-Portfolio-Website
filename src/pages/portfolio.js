@@ -26,7 +26,7 @@ const portfolio_page = () => {
                                 One of the first stages for front-end web development is establishing a colour palette
                                 that can be used throughout the application. An appropriate step in this process is
                                 considering colour accessibility, which is why I used an accessible colour palette generator
-                                tool by <a href="https://venngage.com/tools/accessible-color-palette-generator" target="_blank" className={"text-decoration-none"}>Venngage</a>.
+                                tool by <a href="https://venngage.com/tools/accessible-color-palette-generator" target="_blank" rel="noreferrer noopener" className={"text-decoration-none"}>Venngage</a>.
                             </p>
                         </div>
                         <div className="col-12 col-md-6 align-self-center">
@@ -48,7 +48,7 @@ const portfolio_page = () => {
                                 The next core step for the design phase of this project is to produce wireframes.
                                 This aims to simplify, and speed up the development process by avoiding delays due
                                 to constant front-end considerations and changes. The wireframes for this project were
-                                produced in <a href="https://figma.com" target="_blank" className={"text-decoration-none"}>Figma</a>.
+                                produced in <a href="https://figma.com" target="_blank" rel="noreferrer noopener" className={"text-decoration-none"}>Figma</a>.
                             </p>
                         </div>
                     </div>
@@ -56,13 +56,13 @@ const portfolio_page = () => {
                     <div className="row">
                         <div className="col-12 col-md-6">
                             <p>
-                                This project was conducted in weekly sprints, planned out using <a href="https://www.atlassian.com/software/jira" target="_blank" className={"text-decoration-none"}>Jira</a>.
+                                This project was conducted in weekly sprints, planned out using <a href="https://www.atlassian.com/software/jira" target="_blank" rel="noreferrer noopener" className={"text-decoration-none"}>Jira</a>.
                                 This allowed the project to be split up into tasks or goals and plan out each week to avoid wasting time and resources.
                             </p>
                         </div>
                         <div className="col-12 col-md-6 d-flex justify-content-center align-items-center flex-column">
                             <img src="https://i.imgur.com/cz5tQ5t.png"
-                                 alt="Home Page Wireframe"
+                                 alt="Jira tasks for portfolio project"
                                  className="border border-2 border-black p-1 rounded img-fluid"/>
                             <p className="text-center mt-2">Jira Project Backlog</p>
                         </div>
@@ -74,7 +74,6 @@ const portfolio_page = () => {
                 <div className="m-0">
                     <p className={"m-0"}><strong>Timeline</strong></p>
                     <div className="row">
-                        {/*<div className="col-12 col-md-6">*/}
                         <div>
                             <p>
                                 The project started on June 1st 2025 with core development concluding on July 11th 2025.
@@ -96,28 +95,21 @@ const portfolio_page = () => {
                                 <li>The fifth sprint focused on setting up the project pop-up overlay (custom made image scroller and formatting), and project file restructuring to help with maintainability.</li>
                                 <li>
                                     The final sprint implemented the contact page.
-                                    This involved researching and finding an email API called <a href="https://www.emailjs.com/" target="_blank" className={"text-decoration-none"}>EmailJS</a> that connects with the contact form to automatically send an email with the form's content.
+                                    This involved researching and finding an email API called <a href="https://www.emailjs.com/" target="_blank" rel="noreferrer noopener" className={"text-decoration-none"}>EmailJS</a> that connects with the contact form to automatically send an email with the form's content.
                                     Although it is very important to restrict what content is accepted into a form.
                                     This meant that every field had to be validated and/or sanitised with specific requirements and regex.
                                 </li>
                             </ol>
                         </div>
-                        {/*<div className="col-12 col-md-6 d-flex justify-content-center align-items-center flex-column">*/}
-                        {/*    <img src="https://i.imgur.com/cz5tQ5t.png"*/}
-                        {/*         alt="Home Page Wireframe"*/}
-                        {/*         className="border border-2 border-black p-1 rounded img-fluid"/>*/}
-                        {/*    <p className="text-center mt-2">Jira Project Backlog</p>*/}
-                        {/*</div>*/}
                     </div>
                     <p className={"m-0"}><strong>Struggles</strong></p>
                     <p>
-                        {/*There were <strong>x</strong> issues that arose during the development of this project.*/}
                         There was one main issue that arose during the development of this project.
                         This was discovered whilst learning about environment variables and understanding the importance of hiding them.
                         Unfortunately, EmailJS is a frontend API and I discovered that you can't hide these keys, only obfuscate them.
                         During this development process I explored a basic understanding of a serverless backend website where environment variables can be hidden using Node.js and Express.js.
-                        This allowed me to discover a serverless hosting website called <a href="https://vercel.com/" target="_blank" className={"text-decoration-none"}>Vercel</a> which I hosted a <a href="https://github.com/sam-greig/portfolio_website_backend" target="_blank" className={"text-decoration-none"}>backend</a> for this project.
-                        Sadly this is currently not linked to the site but will most likely be used in the future with a backend email API service like <a href="https://nodemailer.com/" target="_blank" className={"text-decoration-none"}>Nodemailer</a>.
+                        This allowed me to discover a serverless hosting website called <a href="https://vercel.com/" target="_blank" rel="noreferrer noopener" className={"text-decoration-none"}>Vercel</a> which I hosted a <a href="https://github.com/sam-greig/portfolio_website_backend" target="_blank" rel="noreferrer noopener" className={"text-decoration-none"}>backend</a> for this project.
+                        Sadly this is currently not linked to the site but will most likely be used in the future with a backend email API service like <a href="https://nodemailer.com/" target="_blank" rel="noreferrer noopener" className={"text-decoration-none"}>Nodemailer</a>.
                     </p>
                 </div>
                 <h2><strong>Testing</strong></h2>
@@ -128,6 +120,24 @@ const portfolio_page = () => {
                         This involved integration testing to ensure no prior elements were affected when new features were implemented.
                         Furthermore, the inbuilt developers tools allowed console.log testing to be conducted whilst also utilising the ability to change the screen width and height to ensure page adaptability.
                     </p>
+                    <div className="row">
+                        <div className="col-12 col-md-6">
+                            <p>
+                                Although this approach did not feel enough to cover testing user interaction and edge cases.
+                                I wanted to find something that allowed unit testing similar to Javas JUnit, this allowed me to discover  <a href="https://testing-library.com/docs/react-testing-library/intro/" target="_blank" rel="noreferrer noopener" className={"text-decoration-none"}>React-Testing-Library</a> and <a href="https://jestjs.io/" target="_blank" rel="noreferrer noopener" className={"text-decoration-none"}>Jest</a>.
+                                <br></br>
+                                These libraries allowed me to simulate user interaction and see if the website responded as intended.
+                                The first set of unit tests made sure that the navbar buttons switch and rendered the correct content.
+                                Another notable test I explored was simulating a user sending an email on the contact page.
+                            </p>
+                        </div>
+                        <div className="col-12 col-md-6 d-flex justify-content-center align-items-center flex-column">
+                            <img src="images/portfolio/portfolio_website_test_cases.webp"
+                                 alt="Unit tests"
+                                 className="border border-2 border-black p-1 rounded img-fluid"/>
+                            <p className="text-center mt-2">Portfolio Unit Tests</p>
+                        </div>
+                    </div>
                 </div>
                 <h2><strong>Reflection</strong></h2>
                 <hr></hr>
@@ -136,10 +146,13 @@ const portfolio_page = () => {
                         This project caused me to learn a lot while using the React library.
                         React allowed this website to render and display content depending on what the user does on the site.
                         Meanwhile, Bootstrap simplified the CSS of the site by using standardised classes allowing the website to be fluid, adapting to different screen sizes.
+                        This project also allowed a foundational understanding into the React testing libraries available.
+                        Using this tech stack to develop a web application was an enjoyable experience and will definitely be something I use again in the future.
                     </p>
                     <p>
                         For future development, the plan is to continually maintain and update this site by adding past and future projects.
-                        The contact form may be switched to call to a backend API to send emails and reCAPTCHA may be implemented for bot protection.
+                        One feature I would change would be that the contact form could be switched to call to a backend API to send emails and reCAPTCHA may be implemented for bot protection.
+                        A new feature I would like to implement would be utilising local storage to remember where the user has visited upon refresh.
                     </p>
                 </div>
                 <h2><strong>Resources</strong></h2>
@@ -147,25 +160,26 @@ const portfolio_page = () => {
                 <div className={""}>
                     <h6><strong>React</strong></h6>
                     <ul>
-                        <li><a href={"https://www.w3schools.com/react/default.asp"} className={"text-break"}>https://www.w3schools.com/react/default.asp</a></li>
+                        <li><a href={"https://www.w3schools.com/react/default.asp"} target={"_blank"} rel="noreferrer noopener" className={"text-break"}>https://www.w3schools.com/react/default.asp</a></li>
+                        <li><a href={"https://testing-library.com/docs/react-testing-library/intro/"} target={"_blank"} rel="noreferrer noopener" className={"text-break"}>https://testing-library.com/docs/react-testing-library/intro/</a></li>
                     </ul>
                 </div>
                 <div className={""}>
                     <h6><strong>Bootstrap</strong></h6>
                     <ul>
-                        <li><a href={"https://bootstrap-cheatsheet.themeselection.com/"} className={"text-break"}>https://bootstrap-cheatsheet.themeselection.com/</a></li>
-                        <li><a href={"https://www.w3schools.com/bootstrap5/index.php"} className={"text-break"}>https://www.w3schools.com/bootstrap5/index.php</a></li>
+                        <li><a href={"https://bootstrap-cheatsheet.themeselection.com/"} target={"_blank"} rel="noreferrer noopener" className={"text-break"}>https://bootstrap-cheatsheet.themeselection.com/</a></li>
+                        <li><a href={"https://www.w3schools.com/bootstrap5/index.php"} target={"_blank"} rel="noreferrer noopener" className={"text-break"}>https://www.w3schools.com/bootstrap5/index.php</a></li>
                     </ul>
                 </div>
                 <div className={""}>
                     <h6><strong>Hosting</strong></h6>
                     <ul>
-                        <li><a href={"https://pages.github.com/"} className={"text-break"}>https://pages.github.com/</a></li>
-                        <li><a href={"https://github.com/gitname/react-gh-pages"} className={"text-break"}>https://github.com/gitname/react-gh-pages</a></li>
-                        <li><a href={"https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages"} className={"text-break"}>https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages</a></li>
-                        <li><a href={"https://medium.com/@md.alishanali/how-to-deploy-your-node-js-backend-project-to-vercel-a-step-by-step-guide-f92133c3b5e2"} className={"text-break"}>https://medium.com/@md.alishanali/how-to-deploy-your-node-js-backend-project-to-vercel-a-step-by-step-guide-f92133c3b5e2</a></li>
-                        <li><a href={"https://vercel.com/guides/using-express-with-vercel"} className={"text-break"}>https://vercel.com/guides/using-express-with-vercel</a></li>
-                        <li><a href={"https://expressjs.com/en/guide/routing.html"} className={"text-break"}>https://expressjs.com/en/guide/routing.html</a></li>
+                        <li><a href={"https://pages.github.com/"} target={"_blank"} rel="noreferrer noopener" className={"text-break"}>https://pages.github.com/</a></li>
+                        <li><a href={"https://github.com/gitname/react-gh-pages"} target={"_blank"} rel="noreferrer noopener" className={"text-break"}>https://github.com/gitname/react-gh-pages</a></li>
+                        <li><a href={"https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages"} target={"_blank"} rel="noreferrer noopener" className={"text-break"}>https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages</a></li>
+                        <li><a href={"https://medium.com/@md.alishanali/how-to-deploy-your-node-js-backend-project-to-vercel-a-step-by-step-guide-f92133c3b5e2"} target={"_blank"} rel="noreferrer noopener" className={"text-break"}>https://medium.com/@md.alishanali/how-to-deploy-your-node-js-backend-project-to-vercel-a-step-by-step-guide-f92133c3b5e2</a></li>
+                        <li><a href={"https://vercel.com/guides/using-express-with-vercel"} target={"_blank"} rel="noreferrer noopener" className={"text-break"}>https://vercel.com/guides/using-express-with-vercel</a></li>
+                        <li><a href={"https://expressjs.com/en/guide/routing.html"} target={"_blank"} rel="noreferrer noopener" className={"text-break"}>https://expressjs.com/en/guide/routing.html</a></li>
                     </ul>
                 </div>
             </div>
