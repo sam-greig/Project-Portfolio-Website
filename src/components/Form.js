@@ -2,13 +2,14 @@ import React, {useRef, useState} from 'react';
 import emailjs from '@emailjs/browser';
 
 const ContactForm = () => {
-
     const formRef = useRef();
     const buttonRef = useRef();
     const messageRef = useRef();
 
     const [sending_email, set_send_email] = useState(false);
     const [email_cooldown, set_email_cooldown] = useState(false);
+    const [form_data, set_form_data] = useState({message: '', name: '', email: ''});
+
     function send_disappearing_message(message){
         if(messageRef.current){
             messageRef.current.innerText = message;
@@ -31,37 +32,26 @@ const ContactForm = () => {
         }, 2000);
     }
 
-    function validate_field(e){
-        let field = e.target.value;
+    function validate_field(value, target = null) {
+        const field = value?.trim() ?? '';
         //Field is empty
-        if(field.length === 0){
-            e.target.setCustomValidity("Required Field");
-            //Rest of code not needed
+        if (field.length === 0) {
+            target?.setCustomValidity?.("Required Field");
             return false;
-        }
-        else{
-            e.target.setCustomValidity("");
-        }
-
-        let regex;
-        if(e.target.name === "name"){
-            regex = /^[A-Za-z ]+$/;
-        }
-        else{
-            regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         }
 
         //Validate Regex
-        if (!regex.test(field)) {
-            if(e.target.name === "name"){e.target.setCustomValidity("Please use only letters and spaces.");}
-            else{e.target.setCustomValidity("Please use a valid email format.");}
-            //Rest of code not needed
+        if (target?.name === "name" && !/^[A-Za-z ]+$/.test(field)) {
+            target?.setCustomValidity?.("Please use only letters and spaces.");
             return false;
         }
-        else{
-            e.target.setCustomValidity("");
+        if (target?.name === "email" && !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(field)) {
+            target?.setCustomValidity?.("Please use a valid email format.");
+            return false;
         }
+
         //No Issues Found
+        target?.setCustomValidity?.("");
         return true;
     }
 
@@ -73,7 +63,6 @@ const ContactForm = () => {
         //Strip excessive whitespace
         field = field.trim();
         return field;
-
     }
 
     const sendEmail = (e) => {
@@ -88,9 +77,9 @@ const ContactForm = () => {
         }
 
         //Validate Input
-        if(!(validate_field({target: formRef.current.name}) && validate_field({target: formRef.current.email}))){
-            formRef.current.name.reportValidity();
-            formRef.current.email.reportValidity();
+        if (!validate_field(form_data.name, formRef.current?.name) || !validate_field(form_data.email, formRef.current?.email)) {
+            formRef.current?.name.reportValidity();
+            formRef.current?.email.reportValidity();
             return;
         }
 
@@ -99,9 +88,9 @@ const ContactForm = () => {
 
         //Get and Sanitise Input Values
         const sanitised_input = {
-            name: sanitise_field(formRef.current.name.value),
-            email: sanitise_field(formRef.current.email.value),
-            message: sanitise_field(formRef.current.message.value)
+            name: sanitise_field(form_data.name),
+            email: sanitise_field(form_data.email),
+            message: sanitise_field(form_data.message)
         };
 
         //Init the EmailJS API to allow the email to be sent.
@@ -114,11 +103,11 @@ const ContactForm = () => {
         emailjs.send(serviceID, templateID, sanitised_input)
             .then(() => {
                 //Clear Form - Reduce Spamming
-                document.getElementById("contact_form").reset();
+                set_form_data({name: '', email: '', message: ''});
                 send_disappearing_message("Your email has been successfully sent!");
             })
             .catch((err) => {
-                alert(JSON.stringify(err));
+                console.log(JSON.stringify(err));
             })
             .finally(() => {
                 set_email_cooldown(true);
@@ -137,21 +126,21 @@ const ContactForm = () => {
                 <div className="row mb-3 align-items-center">
                     <label className="col-sm-3 col-form-label" htmlFor="name">Name <strong style={{color: "red"}}>*</strong></label>
                     <div className="col-sm-9">
-                        <input type="text" name="name" id="name" className="form-control" onInput={validate_field}/>
+                        <input type="text" name="name" id="name" className="form-control" value={form_data.name} onInput={(e) => {validate_field(e.target.value, formRef.current?.name); set_form_data({...form_data, [e.target.name]: e.target.value});}}/>
                     </div>
                 </div>
 
                 <div className="row mb-3 align-items-center">
                     <label className="col-sm-3 col-form-label" htmlFor="email">Email <strong style={{color: "red"}}>*</strong></label>
                     <div className="col-sm-9">
-                        <input type="email" name="email" id="email" className="form-control" onInput={validate_field}/>
+                        <input type="email" name="email" id="email" className="form-control" value={form_data.email} onInput={(e) => {validate_field(e.target.value, formRef.current?.email); set_form_data({...form_data, [e.target.name]: e.target.value});}}/>
                     </div>
                 </div>
 
                 <div className="row mb-3 align-items-center">
                     <label className="col-sm-3 col-form-label" htmlFor="message">Message</label>
                     <div className="col-sm-9">
-                        <textarea name="message" id="message" className="form-control"></textarea>
+                        <textarea name="message" id="message" className="form-control" value={form_data.message} onInput={(e) => {set_form_data({...form_data, [e.target.name]: e.target.value});}}></textarea>
                     </div>
                 </div>
 

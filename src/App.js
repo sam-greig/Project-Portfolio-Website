@@ -90,10 +90,11 @@ function App() {
                             <>
                                 <h2><strong>About</strong></h2>
                                 <hr></hr>
-                                <p> Motivated and detail-oriented undergraduate computer science student with a strong foundation in programming and software development.
-                                    Recently graduated with a 2:1 in BSc Hons Computer Science at the University of Strathclyde.
-                                    Experienced in developing practical projects that blend creativity with technical expertise, such as a cybersecurity-themed video game.
-                                    Passionate about problem-solving, coding, and creating impactful software solutions.
+                                <p>
+                                    Recent Computer Science graduate (2:1 BSc Hons) from the University of Strathclyde, with a strong foundation in full-stack development, cybersecurity, and software engineering.
+                                    Skilled in building user- friendly, responsive web applications and gamified educational tools using technologies such as React, PHP, and GameMaker.
+                                    Passionate about problem-solving, clean code, and building secure impactful software.
+                                    Proven ability to work both independently and within agile teams.
                                 </p>
                             </>
                         )}
@@ -211,7 +212,7 @@ function App() {
                                                     <hr className="p-0 m-0 mt-2 border-2" />
                                                     <img src="images/caras_art_shop/caras_art_shop_homepage.webp" alt="Cara's Art Shop Store Page" className="img-fluid" />
                                                     <hr className="p-0 m-0 border-2" />
-                                                    <p className="m-3 mt-2 text-start">An ecommerce website built to sell art for a client called Cara.</p>
+                                                    <p className="m-3 mt-2 text-start">An ecommerce website built to sell art for a hypothetical university client called Cara.</p>
                                                 </div>
 
                                                 <div className="d-flex flex-wrap gap-1 m-3">
