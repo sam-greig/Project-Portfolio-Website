@@ -212,7 +212,7 @@ function App() {
                                                     <hr className="p-0 m-0 mt-2 border-2" />
                                                     <img src="images/caras_art_shop/caras_art_shop_homepage.webp" alt="Cara's Art Shop Store Page" className="img-fluid" />
                                                     <hr className="p-0 m-0 border-2" />
-                                                    <p className="m-3 mt-2 text-start">An ecommerce website built to sell art for a client called Cara.</p>
+                                                    <p className="m-3 mt-2 text-start">An ecommerce website built to sell art for a hypothetical university client called Cara.</p>
                                                 </div>
 
                                                 <div className="d-flex flex-wrap gap-1 m-3">
