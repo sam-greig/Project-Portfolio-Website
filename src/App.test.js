@@ -1,8 +1,3 @@
-// jest.mock('@emailjs/browser', () => ({
-//     send: jest.fn(() => Promise.resolve({ status: 200, text: "OK" })),
-//     init: jest.fn(),
-// }));
-
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 import userEvent from "@testing-library/user-event";
@@ -36,9 +31,6 @@ test('check contacts page', () => {
 });
 
 test('send contact email', async () => {
-    // await act(async () => {
-    //     render(<App />);
-    // });
     render(<App/>);
     //Switch to Contact Page
     await userEvent.click(screen.getAllByRole('button', {name: /contact/i})[0]);
@@ -57,10 +49,11 @@ test('send contact email', async () => {
     expect(emailInput).toHaveValue('johndoe@email.com');
 
     const messageInput = screen.getByLabelText(/message/i);
-    messageInput.value = 'John Doe would like to hire you!';
-    fireEvent.change(messageInput, { target: { value: 'John Doe would like to hire you!' } });
-    // await userEvent.type(messageInput, 'John Doe would like to hire you!');
+    // messageInput.value = 'John Doe would like to hire you!';
+    // fireEvent.change(messageInput, { target: { value: 'John Doe would like to hire you!' } });
+    await userEvent.type(messageInput, 'John Doe would like to hire you!');
     expect(messageInput).toHaveValue('John Doe would like to hire you!');
+
     const submitInput = screen.getByDisplayValue(/send email/i);
     //Test should pass as all input data is correct.
     await userEvent.click(submitInput);
